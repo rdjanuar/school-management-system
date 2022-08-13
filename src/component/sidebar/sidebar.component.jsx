@@ -1,146 +1,149 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [id, setId] = useState(0);
 
-  const [menus, setMenus] = useState([
-    {
-      name: "Perencanaan",
-      link: "/perencanaan",
-      id: 1,
-      submenus: [
-        {
-          name: "Tahun Pelajaran",
-          link: "perencanaan/tahun-pelajaran",
-        },
-        {
-          name: "Kelas",
-          link: "perencanaan/kelas",
-        },
+  const menus = useMemo(
+    () => [
+      {
+        name: "Perencanaan",
+        link: "/perencanaan",
+        id: 1,
+        submenus: [
+          {
+            name: "Tahun Pelajaran",
+            link: "perencanaan/tahun-pelajaran",
+          },
+          {
+            name: "Kelas",
+            link: "perencanaan/kelas",
+          },
 
-        {
-          name: "Rombongan Belajar",
-          link: `perencanaan/rombongan-belajar`,
-        },
-        {
-          name: "KKM",
-          link: "perencanaan/KKM",
-        },
-        {
-          name: "Guru Mata Pelajaran",
-          link: "perencanaan/mata-pelajaran",
-        },
-        {
-          name: "Guru Ekstrakulikuler",
-          link: "perencanaan/ekstrakulikuler",
-        },
-        {
-          name: "Guru Wali Kelas",
-          link: "perencanaan/wali-kelas",
-        },
-        {
-          name: "Penugasan Guru",
-          link: "perencanaan/penugasan-guru",
-        },
-      ],
-    },
-    {
-      name: "Penilaian",
-      link: "/penilaian",
-      id: 2,
-      submenus: [
-        {
-          name: "Nilai Tugas",
-          link: "penilaian/tugas",
-        },
-        {
-          name: "Nilai Ulangan Harian",
-          link: "penilaian/ulangan-harian",
-        },
-        {
-          name: "Nilai Ekstrakulikuler",
-          link: "penilaian/ekstrakulikuler",
-        },
-        {
-          name: "Nilai UTS & UAS",
-          link: "penilaian/ulangan",
-        },
-        {
-          name: "Nilai Perilaku Siswa",
-          link: "penilaian/perilaku",
-        },
-      ],
-    },
-    {
-      name: "Laporan",
-      link: "/laporan",
-      id: 3,
-      submenus: [
-        {
-          name: "Absensi",
-          link: "laporan/absensi",
-        },
-        {
-          name: "Kenaikan Kelas",
-          link: "laporan/kenaikan-kelas",
-        },
-        {
-          name: "Progress Raport",
-          link: "laporan/progress-raport",
-        },
-        {
-          name: "Print Raport",
-          link: "laporan/print-raport",
-        },
-        {
-          name: "Print Raport Komentar",
-          link: "laporan/print-raport-komentar",
-        },
-      ],
-    },
-    {
-      name: "Master Data",
-      link: "/master-data",
-      id: 4,
-      submenus: [
-        {
-          name: "Role",
-          link: "data/role",
-        },
-        {
-          name: "User",
-          link: "data/user",
-        },
-        {
-          name: "Guru",
-          link: "data/guru",
-        },
-        {
-          name: "Siswa",
-          link: "data/siswa",
-        },
-        {
-          name: "Pegawai",
-          link: "data/pegawai",
-        },
-        {
-          name: "Tingkat",
-          link: "data/tingkat",
-        },
-        {
-          name: "Ekstra Kulikuler",
-          link: "data/ekstrakulikuler",
-        },
-      ],
-    },
-  ]);
+          {
+            name: "Rombongan Belajar",
+            link: `perencanaan/rombongan-belajar`,
+          },
+          {
+            name: "KKM",
+            link: "perencanaan/KKM",
+          },
+          {
+            name: "Guru Mata Pelajaran",
+            link: "perencanaan/mata-pelajaran",
+          },
+          {
+            name: "Guru Ekstrakulikuler",
+            link: "perencanaan/ekstrakulikuler",
+          },
+          {
+            name: "Guru Wali Kelas",
+            link: "perencanaan/wali-kelas",
+          },
+          {
+            name: "Penugasan Guru",
+            link: "perencanaan/penugasan-guru",
+          },
+        ],
+      },
+      {
+        name: "Penilaian",
+        link: "/penilaian",
+        id: 2,
+        submenus: [
+          {
+            name: "Nilai Tugas",
+            link: "penilaian/tugas",
+          },
+          {
+            name: "Nilai Ulangan Harian",
+            link: "penilaian/ulangan-harian",
+          },
+          {
+            name: "Nilai Ekstrakulikuler",
+            link: "penilaian/ekstrakulikuler",
+          },
+          {
+            name: "Nilai UTS & UAS",
+            link: "penilaian/ulangan",
+          },
+          {
+            name: "Nilai Perilaku Siswa",
+            link: "penilaian/perilaku",
+          },
+        ],
+      },
+      {
+        name: "Laporan",
+        link: "/laporan",
+        id: 3,
+        submenus: [
+          {
+            name: "Absensi",
+            link: "laporan/absensi",
+          },
+          {
+            name: "Kenaikan Kelas",
+            link: "laporan/kenaikan-kelas",
+          },
+          {
+            name: "Progress Raport",
+            link: "laporan/progress-raport",
+          },
+          {
+            name: "Print Raport",
+            link: "laporan/print-raport",
+          },
+          {
+            name: "Print Raport Komentar",
+            link: "laporan/print-raport-komentar",
+          },
+        ],
+      },
+      {
+        name: "Master Data",
+        link: "/master-data",
+        id: 4,
+        submenus: [
+          {
+            name: "Role",
+            link: "data/role",
+          },
+          {
+            name: "User",
+            link: "data/user",
+          },
+          {
+            name: "Guru",
+            link: "data/guru",
+          },
+          {
+            name: "Siswa",
+            link: "data/siswa",
+          },
+          {
+            name: "Pegawai",
+            link: "data/pegawai",
+          },
+          {
+            name: "Tingkat",
+            link: "data/tingkat",
+          },
+          {
+            name: "Ekstra Kulikuler",
+            link: "data/ekstrakulikuler",
+          },
+        ],
+      },
+    ],
+    []
+  );
 
   return (
     <Fragment>
-      <aside className="w-64 text-xl" aria-label="Sidebar">
-        <div className=" h-screen py-4 px-3  bg-gray-50 dark:bg-blackk">
+      <aside className=" w-64 text-xl" aria-label="Sidebar">
+        <div className="h-screen py-4 px-3 bg-white dark:bg-SidebarColor">
           <ul className="space-y-2">
             <li>
               <a
@@ -162,11 +165,11 @@ export const Sidebar = () => {
             </li>
             {menus.map((menu, index) => (
               <li key={index}>
-                <div className="flex items-center">
-                  <span
-                    className="py-2 mx-2 font-bold  text-lg  text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-                    onClick={() => setSidebar(!sidebar) || setId(menu.id)}
-                  >
+                <div
+                  className="flex items-center"
+                  onClick={() => setSidebar(!sidebar) || setId(menu.id)}
+                >
+                  <span className="py-2 mx-2 font-semibold rounded-lg  text-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
                     {menu.name}
                   </span>
                   {sidebar && menu.id === id ? (
@@ -176,7 +179,6 @@ export const Sidebar = () => {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      onClick={() => setSidebar(!sidebar) || setId(menu.id)}
                     >
                       <path
                         strokeLinecap="round"
@@ -192,7 +194,6 @@ export const Sidebar = () => {
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
-                      onClick={() => setSidebar(!sidebar) || setId(menu.id)}
                     >
                       <path
                         strokeLinecap="round"
@@ -205,13 +206,13 @@ export const Sidebar = () => {
                 </div>
                 {sidebar && menu.id === id && (
                   <ul className="space-y-2">
-                    {menu.submenus.map((submenu, index) => (
+                    {menu.submenus.map(({ name, link }, index) => (
                       <li key={index}>
                         <Link
-                          to={submenu.link}
-                          className="flex items-center p-2 pl-4 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                          to={link}
+                          className="flex items-center p-2 pl-4 text-base font-normal  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
                         >
-                          <span className="ml-2">{submenu.name}</span>
+                          <p className="ml-2">{name}</p>
                         </Link>
                       </li>
                     ))}

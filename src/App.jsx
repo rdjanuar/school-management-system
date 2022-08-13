@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className={theme}>
-      <div className="flex flex-col dark:bg-gray-800">
+      <div className="flex flex-col bg-[#FCFCF8]  dark:bg-gray-800">
         <Router />
       </div>
     </div>

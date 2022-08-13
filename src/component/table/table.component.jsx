@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { useTable, usePagination } from "react-table";
 
-import { Button } from "../buttons/buttons.component";
 import { Delete } from "../modal/delete.component";
-import { Search } from "../search/search.component";
+import { Buttons } from "../buttons/buttons.action.component";
 
 export const Table = ({
   headers,
   data,
-  handlerchange,
   onPageChange,
   pageCount,
   onDelete,
@@ -18,100 +17,110 @@ export const Table = ({
   const [show, setShow] = useState(false);
   const [id, setId] = useState(0);
 
+  const columns = useMemo(
+    () =>
+      headers.map((header) => ({
+        Header: header,
+      })),
+    [headers]
+  );
+
+  const { headerGroups, prepareRow, page } = useTable(
+    {
+      columns,
+      data,
+    },
+    usePagination
+  );
+
   return (
-    <div className="mx-auto container">
-      <h1 className="m-10 font-bold text-lg dark:text-white">{title}</h1>
-      <div className="flex justify-between  mx-10 items-center ">
-        <Search handleChange={handlerchange} />
-        <Link to={"/form"}>
-          <Button name={"Add Data"} />
-        </Link>
-      </div>
-      <div className="overflow-x-auto m-10 relative shadow-md sm:rounded-lg">
-        <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              {headers.map((header, index) => {
+    <>
+      <div className="mx-auto container">
+        <h1 className="mx-10 m-7 font-bold text-lg dark:text-white">{title}</h1>
+        <div className="overflow-x-auto mx-10 mt-10 relative shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th scope="col" className="py-3 px-6" key={column.id}>
+                      {column.render("Header")}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+              {page.map((row, i) => {
+                prepareRow(row);
                 return (
-                  <th scope="col" className="py-3 px-6" key={index}>
-                    {header}
-                  </th>
+                  <tr
+                    {...row.getRowProps()}
+                    className="border-b border-gray-200 dark:border-gray-600"
+                  >
+                    {Object.keys(row.original).map((key, index) => {
+                      return (
+                        <td className="py-3 px-6" key={index}>
+                          {key === "price" ? (
+                            <span className="text-gray-700 dark:text-gray-400">
+                              $ {row.original[key]}
+                            </span>
+                          ) : (
+                            row.original[key]
+                          )}
+                        </td>
+                      );
+                    })}
+                    <td className="py-3 px-6 whitespace-nowrap space-x-2">
+                      <Link to={`/form/${row.original.id}`}>
+                        <Buttons name={"Edit"} />
+                      </Link>
+                      <Buttons
+                        handlerClick={() => {
+                          setShow(true);
+                          setId(row.original.id);
+                        }}
+                        name={"Delete"}
+                      />
+                    </td>
+                  </tr>
                 );
               })}
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((datum, index) => {
-              return (
-                <tr
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                  key={index}
-                >
-                  {Object.keys(datum).map((value, index) => {
-                    return (
-                      <td scope="row" className="py-4 px-6" key={index}>
-                        {value === "price" ? (
-                          <p>$ {datum[value]}</p>
-                        ) : (
-                          datum[value]
-                        )}
-                      </td>
-                    );
-                  })}
-                  <td
-                    className="flex items-center py-4 px-6 space-x-3"
-                    key={index}
-                  >
-                    <a
-                      href="#"
-                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                    >
-                      Edit
-                    </a>
-                    <button
-                      className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                      onClick={() => setShow(true) || setId(datum.id)}
-                    >
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-            <tr>
-              <td>
-                {show && (
-                  <Delete
-                    closeModal={setShow}
-                    confirmModal={onDelete}
-                    id={id || 1}
-                  />
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <ReactPaginate
-          className="flex justify-center m-2"
-          nextLabel="Next"
-          onPageChange={onPageChange}
-          pageRangeDisplayed={3}
-          marginPagesDisplayed={2}
-          pageCount={pageCount}
-          previousLabel="Previous"
-          activeClassName="active"
-          renderOnZeroPageCount={null}
-          pageClassName={
-            "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          }
-          previousClassName={
-            "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          }
-          nextClassName={
-            "py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          }
-        />
+              <tr>
+                <td>
+                  {show && (
+                    <Delete
+                      closeModal={setShow}
+                      confirmModal={onDelete}
+                      id={id || 1}
+                    />
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ReactPaginate
+            className="flex justify-center m-2"
+            nextLabel="Next"
+            onPageChange={onPageChange}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={pageCount}
+            previousLabel="Previous"
+            activeClassName="active"
+            renderOnZeroPageCount={null}
+            pageClassName={
+              "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            }
+            previousClassName={
+              "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            }
+            nextClassName={
+              "py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            }
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 };

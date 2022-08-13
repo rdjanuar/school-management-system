@@ -1,31 +1,12 @@
-import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import React, { createContext, useState } from "react";
+import DATA from "../data/dummy.json";
 
 export const DataContext = createContext({
   data: [],
 });
 
 export const DataProvider = ({ children }) => {
-  const [data, setData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res = await axios.get(`https://jsonplaceholder.typicode.com/posts`);
-      const mapData = res.data.map(({ userId, id, title, body }) => ({
-        userId,
-        id,
-        title,
-        body,
-      }));
-      setData(mapData);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
+  const [data] = useState(DATA);
 
   const value = { data };
 

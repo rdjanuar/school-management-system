@@ -3,25 +3,32 @@ import { Routes, Route } from "react-router-dom";
 
 import { Header } from "../component/header/header.component";
 import { Sidebar } from "../component/sidebar/sidebar.component";
-import { Kelas } from "./perencanaan/kelas.component";
-import { Rombongan_Belajar } from "./perencanaan/rombongan_belajar.component";
-import { TahunPelajaran } from "./perencanaan/tahun_pelajaran.component";
-import { Ekstrakulikuler } from "./perencanaan/guru/ekstrakulikuler.component";
-import { KKM } from "./perencanaan/kkm.component";
-import { Mata_Pelajaran } from "./perencanaan/guru/mata_pelajaran.component";
-import { WaliKelas } from "./perencanaan/guru/walikelas.component";
-import { PenugasanGuru } from "./perencanaan/guru/penugasan_guru.component";
-import { Forms } from "./forms/forms.component";
-import { NilaiEkstrakulikuler } from "./penilaian/ekstrakulikuler.component";
-import { Perilaku } from "./penilaian/perilaku.component";
-import { Tugas } from "./penilaian/tugas.component";
-import { UlanganHarian } from "./penilaian/ulangan_harian.component";
-import { Ulangan } from "./penilaian/uts_uas.component";
-import { Absensi } from "./laporan/absensi.component";
-import { Kenaikan } from "./laporan/kenaikan.component";
-import { Progress } from "./laporan/progress.component";
-import { Raport } from "./laporan/raport.component";
-import { RaportKomentar } from "./laporan/raport_komentar.component";
+import { Kelas } from "../pages/perencanaan/kelas.component";
+import { Rombongan_Belajar } from "../pages/perencanaan/rombongan_belajar.component";
+import { TahunPelajaran } from "../pages/perencanaan/tahun_pelajaran.component";
+import { Ekstrakulikuler } from "../pages/perencanaan/guru/ekstrakulikuler.component";
+import { KKM } from "../pages/perencanaan/kkm.component";
+import { Mata_Pelajaran } from "../pages/perencanaan/guru/mata_pelajaran.component";
+import { WaliKelas } from "../pages/perencanaan/guru/walikelas.component";
+import { PenugasanGuru } from "../pages/perencanaan/guru/penugasan_guru.component";
+import { Forms } from "../pages/forms/forms.component";
+import { NilaiEkstrakulikuler } from "../pages/penilaian/ekstrakulikuler.component";
+import { Perilaku } from "../pages/penilaian/perilaku.component";
+import { Tugas } from "../pages/penilaian/tugas.component";
+import { UlanganHarian } from "../pages/penilaian/ulangan_harian.component";
+import { Ulangan } from "../pages/penilaian/uts_uas.component";
+import { Absensi } from "../pages/laporan/absensi.component";
+import { Kenaikan } from "../pages/laporan/kenaikan.component";
+import { Progress } from "../pages/laporan/progress.component";
+import { Raport } from "../pages/laporan/raport.component";
+import { RaportKomentar } from "../pages/laporan/raport_komentar.component";
+import { Role } from "../pages/master_data/role.component";
+import { User } from "../pages/master_data/user.component";
+import { Guru } from "../pages/master_data/guru.component";
+import { DataEkstrakulikuler } from "../pages/master_data/ekstrakulikuler.component";
+import { Siswa } from "../pages/master_data/siswa.component";
+import { Pegawai } from "../pages/master_data/pegawai.component";
+import { Tingkat } from "../pages/master_data/tingkat.component";
 
 export const Router = () => {
   return (
@@ -59,9 +66,18 @@ export const Router = () => {
           <Route path="print-raport" element={<Raport />} />
           <Route path="print-raport-komentar" element={<RaportKomentar />} />
         </Route>
+        <Route path="data">
+          <Route path="role" element={<Role />} />
+          <Route path="user" element={<User />} />
+          <Route path="guru" element={<Guru />} />
+          <Route path="siswa" element={<Siswa />} />
+          <Route path="pegawai" element={<Pegawai />} />
+          <Route path="tingkat" element={<Tingkat />} />
+          <Route path="ekstrakulikuler" element={<DataEkstrakulikuler />} />
+        </Route>
       </Route>
 
-      <Route path="/form" element={<Forms />} />
+      <Route path="/form/:id" element={<Forms />} />
     </Routes>
   );
 };

@@ -63,4 +63,5 @@ export const errorMessage = (error) => {
       });
       break;
   }
+  return error;
 };

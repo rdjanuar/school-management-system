@@ -43,7 +43,11 @@ export const Table = ({
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    <th scope="col" className="py-3 px-6" key={column.id}>
+                    <th
+                      scope="col"
+                      className="py-3 px-6 shadow-sm"
+                      key={column.id}
+                    >
                       {column.render("Header")}
                     </th>
                   ))}
@@ -60,14 +64,11 @@ export const Table = ({
                   >
                     {Object.keys(row.original).map((key, index) => {
                       return (
-                        <td className="py-3 px-6" key={index}>
-                          {key === "price" ? (
-                            <span className="text-gray-700 dark:text-gray-400">
-                              $ {row.original[key]}
-                            </span>
-                          ) : (
-                            row.original[key]
-                          )}
+                        <td
+                          className="py-3 px-6 text-black dark:text-gray-400"
+                          key={index}
+                        >
+                          {row.original[key]}
                         </td>
                       );
                     })}
@@ -100,11 +101,11 @@ export const Table = ({
             </tbody>
           </table>
           <ReactPaginate
-            className="flex justify-center m-2"
+            className="flex justify-center items-center m-2"
             nextLabel="Next"
             onPageChange={onPageChange}
             pageRangeDisplayed={3}
-            marginPagesDisplayed={2}
+            marginPagesDisplayed={5}
             pageCount={pageCount}
             previousLabel="Previous"
             activeClassName="active"

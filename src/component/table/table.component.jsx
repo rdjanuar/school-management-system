@@ -108,16 +108,16 @@ export const Table = ({
             marginPagesDisplayed={5}
             pageCount={pageCount}
             previousLabel="Previous"
-            activeClassName="active"
+            activeClassName="dark:bg-slate-700 dark:bg-slate-700 dark:text-white bg-zinc-500 border-zinc-500  text-black"
             renderOnZeroPageCount={null}
             pageClassName={
-              "py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              "py-2 px-3 leading-tight text-gray-500 bg-zinc-50 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white "
             }
             previousClassName={
-              "py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              "py-2 px-3 ml-0 leading-tight text-gray-500 bg-zinc-50 rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             }
             nextClassName={
-              "py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              "py-2 px-3 leading-tight text-gray-500 bg-zinc-50 rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
             }
           />
         </div>

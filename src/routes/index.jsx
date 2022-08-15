@@ -11,7 +11,6 @@ import { KKM } from "../pages/perencanaan/kkm.component";
 import { Mata_Pelajaran } from "../pages/perencanaan/guru/mata_pelajaran.component";
 import { WaliKelas } from "../pages/perencanaan/guru/walikelas.component";
 import { PenugasanGuru } from "../pages/perencanaan/guru/penugasan_guru.component";
-import { Forms } from "../pages/forms/forms.component";
 import { NilaiEkstrakulikuler } from "../pages/penilaian/ekstrakulikuler.component";
 import { Perilaku } from "../pages/penilaian/perilaku.component";
 import { Tugas } from "../pages/penilaian/tugas.component";
@@ -29,12 +28,16 @@ import { DataEkstrakulikuler } from "../pages/master_data/ekstrakulikuler.compon
 import { Siswa } from "../pages/master_data/siswa.component";
 import { Pegawai } from "../pages/master_data/pegawai.component";
 import { Tingkat } from "../pages/master_data/tingkat.component";
+import { Login } from "../pages/auth/Login.component";
+import { Register } from "../pages/auth/Register.component";
 
 export const Router = () => {
   return (
     <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <div className="flex overflow-x-hidden ">
             <Sidebar />
@@ -76,8 +79,6 @@ export const Router = () => {
           <Route path="ekstrakulikuler" element={<DataEkstrakulikuler />} />
         </Route>
       </Route>
-
-      <Route path="/form/:id" element={<Forms />} />
     </Routes>
   );
 };

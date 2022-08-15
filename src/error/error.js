@@ -15,7 +15,7 @@ export const errorMessage = (error) => {
       });
       break;
     case "Request failed with status code 401":
-      toast.error("Unauthorized or Token Expired", {
+      toast.error("Unauthorized Or Token Expired", {
         position: "top-right",
         autoClose: 2000,
         hideProgressBar: false,
@@ -50,6 +50,7 @@ export const errorMessage = (error) => {
         className: "dark:bg-black dark:text-white",
       });
       break;
+
     default:
       toast.error("Terjadi Kesalahan", {
         position: "top-right",

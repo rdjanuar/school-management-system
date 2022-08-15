@@ -30,7 +30,8 @@ import { Pegawai } from "../pages/master_data/pegawai.component";
 import { Tingkat } from "../pages/master_data/tingkat.component";
 import { Login } from "../pages/auth/Login.component";
 import { Register } from "../pages/auth/Register.component";
-import { PageNotFound } from "../component/404/pageNotFound";
+import { Authenticated } from "../component/404/Unauthenticated";
+import { PageNotFound } from "../component/404/Notfound";
 
 export const Router = () => {
   return (
@@ -40,10 +41,12 @@ export const Router = () => {
       <Route
         path="/dashboard"
         element={
-          <div className="flex overflow-x-hidden ">
-            <Sidebar />
-            <Header name={"Iin Brutal"} />
-          </div>
+          <Authenticated>
+            <div className="flex overflow-x-hidden ">
+              <Sidebar />
+              <Header name={"Iin Brutal"} />
+            </div>
+          </Authenticated>
         }
       >
         <Route path="perencanaan">

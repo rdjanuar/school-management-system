@@ -18,8 +18,7 @@ export const useFetch = (url) => {
     try {
       const response = await axios.get(url, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYxLCJpYXQiOjE2NjA1MjkwNTksImV4cCI6MTY2MDUzMjY1OX0.LEjFDcNzlR9M3KAqLEKBOmkpTEUhHhuDKwKwFtYEDMM",
+          Authorization: import.meta.env.VITE_TOKEN,
         },
       });
       setData(response.data.result.books);
@@ -53,8 +52,7 @@ export const useFetchPost = (url, data) => {
     try {
       await axios.post(url, data, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYxLCJpYXQiOjE2NjA0NTkxMjMsImV4cCI6MTY2MDQ2MjcyM30.AU82s2t0rsrWnIGQW82CbpQA9-UiZfHrmijTiAsbrzc",
+          Authorization: import.meta.env.VITE_TOKEN,
         },
       });
       setLoading(false);
@@ -82,8 +80,7 @@ export const useFetchDelete = () => {
     try {
       await axios.delete(`${url}/${id}`, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYxLCJpYXQiOjE2NjA1MjkwNTksImV4cCI6MTY2MDUzMjY1OX0.LEjFDcNzlR9M3KAqLEKBOmkpTEUhHhuDKwKwFtYEDMM",
+          Authorization: import.meta.env.VITE_TOKEN,
         },
       });
       setLoading(false);
@@ -121,8 +118,7 @@ export const useFetchUpdate = (url, data) => {
     try {
       await axios.put(url, data, {
         headers: {
-          Authorization:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYzLCJpYXQiOjE2NjA0MDE2OTAsImV4cCI6MTY2MDQwNTI5MH0.HVZzye-TYtM3_SsFEMNnHfwBVFrK-94ooSEMne0jHbo",
+          Authorization: import.meta.env.VITE_TOKEN,
         },
       });
       setLoading(false);

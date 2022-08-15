@@ -6,6 +6,7 @@ import { Table } from "../../component/table/table.component";
 import { Spinner } from "../../component/spinner/spinner.component";
 import { Action } from "../../component/action/action.component";
 import { useFetch, useFetchDelete } from "../../hooks/hooks";
+import { Breadcrubms } from "../../component/breadcrumbs/breadcrubms.component";
 
 export const Kelas = ({ itemsPerPage = 5 }) => {
   const [search, setSearch] = useState("");
@@ -13,7 +14,7 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
   const [currentData, setCurrentData] = useState([]);
   const [dataOffset, setDataOffset] = useState([]);
   const { data, loading, fetchData } = useFetch(
-    `http://127.0.0.1:8080/api/v1/book?name=${search}`
+    `${import.meta.env.VITE_API_URL}?name=${search}`
   );
   const { fetchData: fetchDeleteData } = useFetchDelete();
   const headers = [
@@ -29,7 +30,7 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
   ];
 
   const handleDelete = async (id) => {
-    const res = await fetchDeleteData(`http://127.0.0.1:8080/api/v1/book`, id);
+    const res = await fetchDeleteData(import.meta.env.VITE_API_URL, id);
     const updateData = await fetchData();
     return Promise.race([res, updateData]);
   };
@@ -75,6 +76,9 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
 
   return (
     <>
+      <div className="mb-10">
+        <Breadcrubms />
+      </div>
       <Action handlerChange={(e) => setSearch(e.target.value)} />
       {loading ? (
         <Spinner />

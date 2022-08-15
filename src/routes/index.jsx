@@ -30,6 +30,7 @@ import { Pegawai } from "../pages/master_data/pegawai.component";
 import { Tingkat } from "../pages/master_data/tingkat.component";
 import { Login } from "../pages/auth/Login.component";
 import { Register } from "../pages/auth/Register.component";
+import { PageNotFound } from "../component/404/pageNotFound";
 
 export const Router = () => {
   return (
@@ -79,6 +80,7 @@ export const Router = () => {
           <Route path="ekstrakulikuler" element={<DataEkstrakulikuler />} />
         </Route>
       </Route>
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };

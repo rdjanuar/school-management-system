@@ -5,6 +5,10 @@ export const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
   const [id, setId] = useState(0);
 
+  const onActiveLink = (id) => {
+    setId(id);
+  };
+
   const menus = useMemo(
     () => [
       {
@@ -210,7 +214,10 @@ export const Sidebar = () => {
                       <li key={index}>
                         <Link
                           to={link}
-                          className="flex items-center p-2 pl-4 text-base font-normal  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                          // Active Link
+                          className={
+                            "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                          }
                         >
                           <p className="ml-2">{name}</p>
                         </Link>

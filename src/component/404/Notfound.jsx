@@ -11,9 +11,9 @@ export const PageNotFound = () => {
   return (
     <Error
       response={404}
-      header={` Maaf, kami tidak dapat menemukan  ${
+      header={` Maaf, kami tidak dapat menemukan  halaman ${
         path[0].toUpperCase() + path.slice(1)
-      } halaman`}
+      } `}
       message={`Tapi jangan khawatir, Anda dapat menemukan banyak hal lain di ${
         isLogin() ? "Dashboard" : "Homepage"
       }.`}

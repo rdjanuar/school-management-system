@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { errorMessage } from "../error/error";
+import { errorMessage, errorMessageAuth } from "../error/error";
 import { toast } from "react-toastify";
 import { getToken } from "../utils/helper";
 
@@ -29,11 +29,11 @@ export const useFetch = (url) => {
       setError(true);
       errorMessage(error);
     }
-  };
 
-  useEffect(() => {
-    fetchData();
-  }, [url]);
+    useEffect(() => {
+      fetchData();
+    }, [url]);
+  };
 
   return { data, loading, error, fetchData };
 };
@@ -45,11 +45,11 @@ export const useFetch = (url) => {
  * @returns
  */
 
-export const useFetchPost = () => {
+export const useFetchPost = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchData = async (url, data, ...rest) => {
+  const fetchData = async (data, ...rest) => {
     try {
       const response = await axios.post(url, data, ...rest);
       setLoading(false);
@@ -57,6 +57,7 @@ export const useFetchPost = () => {
     } catch (error) {
       setError(true);
       errorMessage(error);
+      errorMessageAuth(error);
     }
   };
 
@@ -70,11 +71,11 @@ export const useFetchPost = () => {
  * @returns
  */
 
-export const useFetchDelete = () => {
+export const useFetchDelete = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchData = async (url, id) => {
+  const fetchData = async (id) => {
     try {
       await axios.delete(`${url}/${id}`, {
         headers: {
@@ -127,4 +128,28 @@ export const useFetchUpdate = (url, data) => {
   };
 
   return { loading, error, fetchData };
+};
+
+export const useFetchById = (url) => {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  const fetchData = async (id) => {
+    try {
+      const response = await axios.get(`${url}/${id}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      });
+      setData(response.data);
+      setLoading(false);
+      return response.data;
+    } catch (error) {
+      setError(true);
+      errorMessage(error);
+    }
+  };
+
+  return { data, loading, error, fetchData };
 };

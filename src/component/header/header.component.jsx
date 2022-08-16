@@ -1,14 +1,23 @@
 import React, { useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import { Toggle } from "../toggle/toggle.component";
 import { ThemeContext } from "../../context/theme.context";
+import { clearCookie } from "../../utils/helper";
 
 export const Header = ({ name }) => {
   const { toggleTheme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const handlerTheme = () => {
     toggleTheme();
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    clearCookie("token");
+    navigate("/");
   };
 
   return (
@@ -35,7 +44,7 @@ export const Header = ({ name }) => {
         <div className="flex space-x-6 items-center">
           <Toggle HandlerClick={handlerTheme} />
           <p>{name}</p>
-          <p>Logout</p>
+          <button onClick={logout}>Logout</button>
         </div>
       </div>
       <Outlet />

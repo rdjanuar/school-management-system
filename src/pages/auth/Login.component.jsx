@@ -5,9 +5,12 @@ import { useFetchPost } from "../../hooks/hooks";
 import { Form } from "../../component/form/Form.component";
 import { setToken, setUser } from "../../utils/helper";
 import { ToastContainer, Slide } from "react-toastify";
+import { setCookie } from "../../utils/helper";
 
 export const Login = () => {
-  const { fetchData } = useFetchPost();
+  const { fetchData } = useFetchPost(
+    `${import.meta.env.VITE_API_URL}/auths/login`
+  );
   const navigate = useNavigate();
 
   const template = useMemo(
@@ -29,16 +32,12 @@ export const Login = () => {
     []
   );
   const handlerData = async (data) => {
-    try {
-      const fetchPost = await fetchData(
-        "http://18.133.255.126/auths/login",
-        data
-      );
-      console.log(fetchPost.data.user);
-      setUser(fetchPost.data.findUser);
+    const fetchPost = await fetchData(data);
+    if (fetchPost) {
+      setUser(fetchPost.data.user);
       setToken(fetchPost.data.token);
-    } catch (error) {
-      console.log(error.message);
+      setCookie("token", fetchPost.data.token, 1);
+      return navigate("/dashboard");
     }
   };
   return (

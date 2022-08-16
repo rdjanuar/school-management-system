@@ -51,18 +51,40 @@ export const errorMessage = (error) => {
       });
       break;
 
-    default:
-      toast.error("Terjadi Kesalahan", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        className: "dark:bg-black dark:text-white",
-      });
-      break;
+    case "User Anda belum aktif atau Anda salah memasukkan password.":
+      toast.error(
+        "User Anda belum aktif atau Anda salah memasukkan password.",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          className: "dark:bg-black dark:text-white",
+        }
+      );
+  }
+  return error;
+};
+
+export const errorMessageAuth = (error) => {
+  switch (error.response.data.message) {
+    case "User Anda belum aktif atau Anda salah memasukkan password.":
+      toast.error(
+        "User Anda belum aktif atau Anda salah memasukkan password.",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          className: "dark:bg-black dark:text-white",
+        }
+      );
   }
   return error;
 };

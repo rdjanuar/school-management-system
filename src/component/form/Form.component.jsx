@@ -2,18 +2,23 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "../buttons/buttons.component";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { validatorSchema } from "../../utils/helper";
-
+import {
+  validatorAuthSchema,
+  validatorYayasanSchema,
+} from "../../utils/helper";
 export const Form = ({ onSubmit, template }) => {
+  const { tittle, fields } = template;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(validatorSchema()),
+    resolver:
+      template.tittle === "Login"
+        ? yupResolver(validatorAuthSchema())
+        : yupResolver(validatorYayasanSchema()),
   });
-
-  const { tittle, fields } = template;
 
   const renderFields = (fields) => {
     return fields.map((field) => {

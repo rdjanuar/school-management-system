@@ -46,7 +46,7 @@ export const Form = ({ onSubmit, template }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen ">
+    <div className="flex flex-col justify-center items-center h-screen bg-gray-800">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <h2 className="font-semibold text-white text-center">{tittle}</h2>
         {renderFields(fields)}

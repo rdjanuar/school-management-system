@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 export const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -141,7 +141,7 @@ export const Sidebar = () => {
   );
 
   return (
-    <Fragment>
+    <>
       <aside className=" w-64 text-xl" aria-label="Sidebar">
         <div className="h-screen py-4 px-3 bg-white dark:bg-SidebarColor">
           <ul className="space-y-2">
@@ -223,6 +223,6 @@ export const Sidebar = () => {
           </ul>
         </div>
       </aside>
-    </Fragment>
+    </>
   );
 };

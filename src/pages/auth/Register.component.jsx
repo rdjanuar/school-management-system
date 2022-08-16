@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
+
 import { Form } from "../../component/form/Form.component";
+
 export const Register = () => {
   const template = useMemo(
     () => ({

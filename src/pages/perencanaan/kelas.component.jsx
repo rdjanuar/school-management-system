@@ -75,7 +75,7 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
   };
 
   return (
-    <>
+    <div className="flex flex-col">
       <div className="mb-10">
         <Breadcrubms />
       </div>
@@ -97,6 +97,6 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
         </>
       )}
       <ToastContainer transition={Slide} />
-    </>
+    </div>
   );
 };

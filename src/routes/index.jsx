@@ -32,6 +32,7 @@ import { Login } from "../pages/auth/Login.component";
 import { Register } from "../pages/auth/Register.component";
 import { Authenticated } from "../component/404/Unauthenticated";
 import { PageNotFound } from "../component/404/Notfound";
+import { userData } from "../utils/helper";
 
 export const Router = () => {
   return (
@@ -44,7 +45,7 @@ export const Router = () => {
           <Authenticated>
             <div className="flex overflow-x-hidden ">
               <Sidebar />
-              <Header name={"Iin Brutal"} />
+              <Header name={userData("username")} />
             </div>
           </Authenticated>
         }

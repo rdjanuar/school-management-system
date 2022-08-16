@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { errorMessage } from "../error/error";
 import { toast } from "react-toastify";
+import { getToken } from "../utils/helper";
 
 /**
  *
@@ -18,7 +19,7 @@ export const useFetch = (url) => {
     try {
       const response = await axios.get(url, {
         headers: {
-          Authorization: import.meta.env.VITE_TOKEN,
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setData(response.data.result.books);
@@ -44,18 +45,15 @@ export const useFetch = (url) => {
  * @returns
  */
 
-export const useFetchPost = (url, data) => {
+export const useFetchPost = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = async (url, data, ...rest) => {
     try {
-      await axios.post(url, data, {
-        headers: {
-          Authorization: import.meta.env.VITE_TOKEN,
-        },
-      });
+      const response = await axios.post(url, data, ...rest);
       setLoading(false);
+      return response.data;
     } catch (error) {
       setError(true);
       errorMessage(error);
@@ -80,7 +78,7 @@ export const useFetchDelete = () => {
     try {
       await axios.delete(`${url}/${id}`, {
         headers: {
-          Authorization: import.meta.env.VITE_TOKEN,
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);
@@ -118,7 +116,7 @@ export const useFetchUpdate = (url, data) => {
     try {
       await axios.put(url, data, {
         headers: {
-          Authorization: import.meta.env.VITE_TOKEN,
+          Authorization: `Bearer ${getToken()}`,
         },
       });
       setLoading(false);

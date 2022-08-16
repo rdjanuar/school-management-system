@@ -33,8 +33,9 @@ import { Register } from "../pages/auth/Register.component";
 import { Authenticated } from "../component/404/Unauthenticated";
 import { PageNotFound } from "../component/404/Notfound";
 import { Expired } from "../component/404/Expired";
-import { userData } from "../utils/helper";
 import { CreateYayasan } from "../pages/yayasan/CreateYayasan.component";
+import { SettingAccount } from "../component/user/Setting.component";
+import { menusDashboard, menuSetting } from "../utils/helper";
 
 export const Router = () => {
   return (
@@ -47,8 +48,8 @@ export const Router = () => {
           <Authenticated>
             <Expired>
               <div className="flex overflow-x-hidden ">
-                <Sidebar />
-                <Header name={userData("username")} />
+                <Sidebar menus={menusDashboard} />
+                <Header />
               </div>
             </Expired>
           </Authenticated>
@@ -91,6 +92,21 @@ export const Router = () => {
       <Route path="*" element={<PageNotFound />} />
       <Route path="form">
         <Route path="yayasan" element={<CreateYayasan />} />
+      </Route>
+      <Route
+        path="/settings"
+        element={
+          <Authenticated>
+            <Expired>
+              <div className="flex overflow-x-hidden ">
+                <Sidebar menus={menuSetting} />
+                <Header />
+              </div>
+            </Expired>
+          </Authenticated>
+        }
+      >
+        <Route path="akun" element={<SettingAccount />} />
       </Route>
     </Routes>
   );

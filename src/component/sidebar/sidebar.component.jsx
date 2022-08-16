@@ -1,148 +1,9 @@
 import React, { Fragment, useState, useMemo } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-export const Sidebar = () => {
+export const Sidebar = ({ menus }) => {
   const [sidebar, setSidebar] = useState(false);
   const [id, setId] = useState(0);
-
-  const onActiveLink = (id) => {
-    setId(id);
-  };
-
-  const menus = useMemo(
-    () => [
-      {
-        name: "Perencanaan",
-        link: "/perencanaan",
-        id: 1,
-        submenus: [
-          {
-            name: "Tahun Pelajaran",
-            link: "perencanaan/tahun-pelajaran",
-          },
-          {
-            name: "Kelas",
-            link: "perencanaan/kelas",
-          },
-
-          {
-            name: "Rombongan Belajar",
-            link: `perencanaan/rombongan-belajar`,
-          },
-          {
-            name: "KKM",
-            link: "perencanaan/KKM",
-          },
-          {
-            name: "Guru Mata Pelajaran",
-            link: "perencanaan/mata-pelajaran",
-          },
-          {
-            name: "Guru Ekstrakulikuler",
-            link: "perencanaan/ekstrakulikuler",
-          },
-          {
-            name: "Guru Wali Kelas",
-            link: "perencanaan/wali-kelas",
-          },
-          {
-            name: "Penugasan Guru",
-            link: "perencanaan/penugasan-guru",
-          },
-        ],
-      },
-      {
-        name: "Penilaian",
-        link: "/penilaian",
-        id: 2,
-        submenus: [
-          {
-            name: "Nilai Tugas",
-            link: "penilaian/tugas",
-          },
-          {
-            name: "Nilai Ulangan Harian",
-            link: "penilaian/ulangan-harian",
-          },
-          {
-            name: "Nilai Ekstrakulikuler",
-            link: "penilaian/ekstrakulikuler",
-          },
-          {
-            name: "Nilai UTS & UAS",
-            link: "penilaian/ulangan",
-          },
-          {
-            name: "Nilai Perilaku Siswa",
-            link: "penilaian/perilaku",
-          },
-        ],
-      },
-      {
-        name: "Laporan",
-        link: "/laporan",
-        id: 3,
-        submenus: [
-          {
-            name: "Absensi",
-            link: "laporan/absensi",
-          },
-          {
-            name: "Kenaikan Kelas",
-            link: "laporan/kenaikan-kelas",
-          },
-          {
-            name: "Progress Raport",
-            link: "laporan/progress-raport",
-          },
-          {
-            name: "Print Raport",
-            link: "laporan/print-raport",
-          },
-          {
-            name: "Print Raport Komentar",
-            link: "laporan/print-raport-komentar",
-          },
-        ],
-      },
-      {
-        name: "Master Data",
-        link: "/master-data",
-        id: 4,
-        submenus: [
-          {
-            name: "Role",
-            link: "data/role",
-          },
-          {
-            name: "User",
-            link: "data/user",
-          },
-          {
-            name: "Guru",
-            link: "data/guru",
-          },
-          {
-            name: "Siswa",
-            link: "data/siswa",
-          },
-          {
-            name: "Pegawai",
-            link: "data/pegawai",
-          },
-          {
-            name: "Tingkat",
-            link: "data/tingkat",
-          },
-          {
-            name: "Ekstra Kulikuler",
-            link: "data/ekstrakulikuler",
-          },
-        ],
-      },
-    ],
-    []
-  );
 
   return (
     <>
@@ -216,7 +77,7 @@ export const Sidebar = () => {
                           to={link}
                           // Active Link
                           className={
-                            "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                            "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:focus:bg-gray-700 dark:hover:bg-gray-700"
                           }
                         >
                           <p className="ml-2">{name}</p>

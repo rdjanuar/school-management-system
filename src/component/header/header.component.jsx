@@ -1,28 +1,30 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import images from "../../assets/avatar.png";
 
 import { Toggle } from "../toggle/toggle.component";
 import { ThemeContext } from "../../context/theme.context";
-import { clearCookie } from "../../utils/helper";
+import { logout } from "../../utils/helper";
+import { MenuDropDown } from "../action/Menu.action.component";
 
-export const Header = ({ name }) => {
+export const Header = () => {
   const { toggleTheme } = useContext(ThemeContext);
+  const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
 
   const handlerTheme = () => {
     toggleTheme();
   };
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    clearCookie("token");
-    navigate("/");
+  const logoutAction = () => {
+    logout(() => {
+      navigate("/");
+    });
   };
 
   return (
     <div className="mx-auto container">
-      <div className="flex justify-between m-10 dark:text-white">
+      <div className="flex justify-between m-10 dark:text-white items-center">
         <div>
           <svg
             className="w-8 h-8"
@@ -41,10 +43,19 @@ export const Header = ({ name }) => {
             ></path>
           </svg>
         </div>
-        <div className="flex space-x-6 items-center">
+        <div className="flex space-x-6 items-center ">
           <Toggle HandlerClick={handlerTheme} />
-          <p>{name}</p>
-          <button onClick={logout}>Logout</button>
+          <button
+            id="dropdownUserAvatarButton"
+            data-dropdown-toggle="dropdownAvatar"
+            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            type="button"
+            onClick={() => setDropdown(!dropdown)}
+          >
+            <span class="sr-only">Open user menu</span>
+            <img class="w-10 h-10 rounded-full" src={images} alt="user photo" />
+            {dropdown && <MenuDropDown onClick={logoutAction} />}
+          </button>
         </div>
       </div>
       <Outlet />

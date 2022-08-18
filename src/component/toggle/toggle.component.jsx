@@ -5,8 +5,8 @@ export const Toggle = ({ HandlerClick }) => {
     <div
       className={
         localStorage.getItem("theme") === "dark"
-          ? "p-2 rounded-full bg-yellow-200"
-          : "p-2 rounded-full bg-zinc-700"
+          ? "p-1.5 rounded-full bg-yellow-200"
+          : "p-1.5 rounded-full bg-zinc-700"
       }
     >
       {localStorage.getItem("theme") === "dark" ? (

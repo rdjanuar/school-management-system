@@ -1,59 +1,69 @@
 [
   {
+    "id": 1,
     "nama": "Rizky Djanuar",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII RPL"
   },
   {
+    "id": 2,
     "nama": "Yeji",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Farmasi"
   },
   {
+    "id": 3,
     "nama": "Jihan",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Farmasi"
   },
   {
+    "id": 4,
     "nama": "Ryujin",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Akutansi"
   },
   {
+    "id": 5,
     "nama": "Lee jae he",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII RPL"
   },
   {
+    "id": 6,
     "nama": "Monday",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII RPL"
   },
   {
+    "id": 7,
     "nama": "Sana",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Keperawatan"
   },
   {
+    "id": 8,
     "nama": "Mina",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Keperawatan"
   },
   {
+    "id": 9,
     "nama": "Tzuyu",
     "nisn": "123456789",
     "nis": "123456789",
     "kelas": "XII Keperawatan"
   },
   {
+    "id": 10,
     "nama": "Dahyun",
     "nisn": "123456789",
     "nis": "123456789",

@@ -1,13 +1,9 @@
 import React from "react";
 
-export const Buttons = ({ name, handlerClick }) => {
+export const Buttons = ({ name, handlerClick, color }) => {
   return (
     <button
-      className={
-        name === "Delete"
-          ? "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-          : "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      }
+      className={`bg-${color}-500 hover:bg-${color}-700 text-white font-bold py-2 px-4 rounded`}
       onClick={handlerClick}
     >
       {name}

@@ -1,11 +1,15 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, Slide } from "react-toastify";
 
 import { useFetchPost } from "../../hooks/hooks";
 import { Form } from "../../component/form/Form.component";
-import { setToken, setUser, userData } from "../../utils/helper";
-import { ToastContainer, Slide } from "react-toastify";
-import { setCookie } from "../../utils/helper";
+import {
+  setToken,
+  setUser,
+  setCookie,
+  determineRoles,
+} from "../../utils/helper";
 
 export const Login = () => {
   const { fetchData } = useFetchPost(
@@ -32,23 +36,18 @@ export const Login = () => {
     []
   );
   const handlerData = async (data) => {
-    const roles = ["administrator", "guru"];
     const fetchPost = await fetchData(data);
 
-    if (fetchPost) {
-      setUser(fetchPost.data.user);
-      setToken(fetchPost.data.token);
-      setCookie("token", fetchPost.data.token, 1);
-
-      const user = userData("roles");
-      return user.map((p) => p.nama).filter((p) => roles.includes(p)).length
-        ? navigate("/dashboard")
-        : navigate("/yayasan");
+    if (fetchPost.status === 200) {
+      setUser(fetchPost.data.data.user);
+      setToken(fetchPost.data.data.token);
+      setCookie("token", fetchPost.data.data.token, 1);
+      return navigate("/dashboard");
     }
   };
   return (
     <>
-      <Form onSubmit={handlerData} template={template} />
+      <Form onSubmit={handlerData} template={template} height={"h-screen"} />
       <ToastContainer transition={Slide} />
     </>
   );

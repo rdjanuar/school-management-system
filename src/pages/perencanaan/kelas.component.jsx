@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, Slide } from "react-toastify";
 
@@ -14,7 +14,7 @@ export const Kelas = ({ itemsPerPage = 5 }) => {
   const [currentData, setCurrentData] = useState([]);
   const [dataOffset, setDataOffset] = useState([]);
   const { data, loading, fetchData } = useFetch(
-    `${import.meta.env.VITE_API_URL}?name=${search}`
+    `${import.meta.env.VITE_API_URL}/yayasan/1`
   );
   const { fetchData: fetchDeleteData } = useFetchDelete();
   const headers = [

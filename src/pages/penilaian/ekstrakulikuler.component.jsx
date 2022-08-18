@@ -11,7 +11,7 @@ export const NilaiEkstrakulikuler = () => {
   const [currentData, setCurrentData] = useState([]);
   const [dataOffset, setDataOffset] = useState([]);
 
-  const itemsPerPage = 5;
+  const itemsPerPage = 6;
 
   const handlerPageChange = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;

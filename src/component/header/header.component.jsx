@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import images from "../../assets/avatar.png";
 
 import { Toggle } from "../toggle/toggle.component";
 import { ThemeContext } from "../../context/theme.context";
@@ -24,10 +23,10 @@ export const Header = () => {
 
   return (
     <div className="mx-auto container">
-      <div className="flex justify-between m-10 dark:text-white items-center">
+      <div className="flex justify-between mx-[2.2rem] my-10 dark:text-white items-center">
         <div>
           <svg
-            className="w-8 h-8"
+            className="w-11 h-11"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -48,12 +47,23 @@ export const Header = () => {
           <button
             id="dropdownUserAvatarButton"
             data-dropdown-toggle="dropdownAvatar"
-            class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            className="flex"
             type="button"
             onClick={() => setDropdown(!dropdown)}
           >
-            <span class="sr-only">Open user menu</span>
-            <img class="w-10 h-10 rounded-full" src={images} alt="user photo" />
+            <span className="sr-only">Open user menu</span>
+            <svg
+              className="w-11 h-12"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                clipRule="evenodd"
+              />
+            </svg>
             {dropdown && <MenuDropDown onClick={logoutAction} />}
           </button>
         </div>

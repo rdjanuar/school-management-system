@@ -1,14 +1,23 @@
-import React, { Fragment, useState, useMemo } from "react";
-import { Link, Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export const Sidebar = ({ menus }) => {
   const [sidebar, setSidebar] = useState(false);
   const [id, setId] = useState(0);
+  const location = useLocation();
+  const { pathname } = location;
+  const path = pathname.split("/")[1];
 
   return (
     <>
       <aside className=" w-64 text-xl" aria-label="Sidebar">
-        <div className="h-screen py-4 px-3 bg-white dark:bg-SidebarColor">
+        <div
+          className={
+            path === "dashboard"
+              ? "h-screen py-4 px-3 bg-white dark:bg-SidebarColor"
+              : "h-screen py-4 px-3 bg-white dark:bg-SettingSidebarColor"
+          }
+        >
           <ul className="space-y-2">
             <li>
               <a

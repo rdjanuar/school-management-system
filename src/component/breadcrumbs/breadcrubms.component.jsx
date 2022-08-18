@@ -7,9 +7,10 @@ export const Breadcrubms = () => {
   const breadCrumbView = () => {
     const { pathname } = location;
     const pathnames = pathname.split("/").filter((x) => x);
+
     return (
       <>
-        <nav className="flex mx-10" aria-label="Breadcrumb">
+        <nav className="flex mx-[1.95rem] mb-10" aria-label="Breadcrumb">
           <ol className="inline-flex items-center  space-x-1 md:space-x-3">
             <li className="inline-flex items-center">
               {pathnames.map((name, index) => {
@@ -32,7 +33,7 @@ export const Breadcrubms = () => {
                               clipRule="evenodd"
                             ></path>
                           </svg>
-                          {name}
+                          {name[0].toUpperCase() + name.slice(1)}
                         </span>
                       </div>
                     </li>
@@ -74,7 +75,7 @@ export const Breadcrubms = () => {
                                   clipRule="evenodd"
                                 ></path>
                               </svg>
-                              {name}
+                              {name[0].toUpperCase() + name.slice(1)}
                             </span>
                           )}
                         </Link>

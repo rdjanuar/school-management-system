@@ -38,8 +38,8 @@ export const Table = ({
       <div className="mx-auto container">
         <h1 className="mx-10 m-7 font-bold text-lg dark:text-white">{title}</h1>
         <div className="overflow-x-auto mx-10 mt-10 relative shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-left text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400 ">
+            <thead className=" text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400">
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
@@ -60,12 +60,12 @@ export const Table = ({
                 return (
                   <tr
                     {...row.getRowProps()}
-                    className="border-b border-gray-200 dark:border-gray-600"
+                    className="border-b border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600"
                   >
                     {Object.keys(row.original).map((key, index) => {
                       return (
                         <td
-                          className="py-3 px-6 text-black dark:text-gray-400"
+                          className="py-3 px-6 text-black dark:text-gray-400 "
                           key={index}
                         >
                           {row.original[key]}
@@ -74,7 +74,7 @@ export const Table = ({
                     })}
                     <td className="py-3 px-6 whitespace-nowrap space-x-2">
                       <Link to={`/form/${row.original.id}`}>
-                        <Buttons name={"Edit"} />
+                        <Buttons name={"Edit"} color={"blue"} />
                       </Link>
                       <Buttons
                         handlerClick={() => {
@@ -82,6 +82,7 @@ export const Table = ({
                           setId(row.original.id);
                         }}
                         name={"Delete"}
+                        color={"red"}
                       />
                     </td>
                   </tr>
@@ -101,17 +102,17 @@ export const Table = ({
             </tbody>
           </table>
           <ReactPaginate
-            className="flex justify-center items-center m-2"
+            className="flex justify-center items-center dark:bg-gray-800 bg-white "
             nextLabel="Next"
             onPageChange={onPageChange}
             pageRangeDisplayed={3}
             marginPagesDisplayed={5}
             pageCount={pageCount}
             previousLabel="Previous"
-            activeClassName="dark:bg-slate-700 dark:bg-slate-700 dark:text-white bg-zinc-500 border-zinc-500  text-black"
+            activeClassName="dark:bg-slate-700 dark:bg-slate-700 dark:text-white bg-gray-200  text-black"
             renderOnZeroPageCount={null}
             pageClassName={
-              "py-2 px-3 leading-tight text-gray-500 bg-zinc-50 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white "
+              "py-2 px-3 leading-tight text-gray-500 bg-zinc-50 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white bg-white "
             }
             previousClassName={
               "py-2 px-3 ml-0 leading-tight text-gray-500 bg-zinc-50 rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"

@@ -3,6 +3,7 @@ import React, { useContext, useState, useMemo } from "react";
 import { Breadcrubms } from "../../component/breadcrumbs/breadcrubms.component";
 import { Table } from "../../component/table/table.component";
 import { DataContext } from "../../context/data.context";
+import { Action } from "../../component/action/action.component";
 
 export const Absensi = () => {
   const headers = ["Nama", "nisn", "nis", "Kelas", "Action"];
@@ -26,14 +27,18 @@ export const Absensi = () => {
 
   return (
     <>
-      <Breadcrubms />
-      <Table
-        headers={headers}
-        data={currentData}
-        title={"Absensi"}
-        onPageChange={handlerPageChange}
-        pageCount={pageCount}
-      />
+      <div className="flex flex-col">
+        <Breadcrubms />
+        <Action handlerChange={(e) => setSearch(e.target.value)} />
+
+        <Table
+          headers={headers}
+          data={currentData}
+          title={"Absensi"}
+          onPageChange={handlerPageChange}
+          pageCount={pageCount}
+        />
+      </div>
     </>
   );
 };

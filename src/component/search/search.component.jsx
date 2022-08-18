@@ -1,3 +1,5 @@
+import React from "react";
+
 export const Search = ({ handleChange, ...props }) => {
   return (
     <div className="pb-4 dark:bg-gray-800">

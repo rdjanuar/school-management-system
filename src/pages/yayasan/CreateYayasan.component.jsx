@@ -2,9 +2,11 @@ import React from "react";
 
 import { Form } from "../../component/form/Form.component";
 import { useFetchPost } from "../../hooks/hooks";
+import { getToken } from "../../utils/helper";
 
 export const CreateYayasan = () => {
   const { fetchData } = useFetchPost(`${import.meta.env.VITE_API_URL}/yayasan`);
+
   const template = {
     tittle: "Create Yayasan",
     fields: [
@@ -44,10 +46,9 @@ export const CreateYayasan = () => {
   const handlerData = async (data) => {
     const fetchPost = await fetchData(data, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        Authorization: `Bearer ${getToken()}`,
       },
     });
-    console.log(data);
     console.log(fetchPost);
   };
 

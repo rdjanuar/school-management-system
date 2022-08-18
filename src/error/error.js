@@ -65,7 +65,10 @@ export const errorMessage = (error) => {
           className: "dark:bg-black dark:text-white",
         }
       );
+    default:
+      break;
   }
+
   return error;
 };
 
@@ -85,6 +88,9 @@ export const errorMessageAuth = (error) => {
           className: "dark:bg-black dark:text-white",
         }
       );
+    default:
+      break;
   }
+
   return error;
 };

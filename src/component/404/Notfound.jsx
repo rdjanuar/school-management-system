@@ -8,6 +8,7 @@ export const PageNotFound = () => {
   const location = useLocation();
   const { pathname } = location;
   const path = pathname.split("/")[1];
+
   return (
     <Error
       response={404}

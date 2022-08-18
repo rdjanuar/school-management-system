@@ -6,8 +6,10 @@ module.exports = {
     extend: {
       colors: {
         SidebarColor: "#333333",
+        SettingSidebarColor: "#1e1e2d",
+        bgColor: "rgba(242,247,255)",
       },
     },
   },
-  plugins: [],
+  plugins: ["@tailwindcss/typography"],
 };

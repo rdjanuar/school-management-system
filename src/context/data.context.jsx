@@ -1,7 +1,9 @@
 import React, { createContext, useState } from "react";
 import DATA from "../data/dummy.json";
 
-export const DataContext = createContext({});
+export const DataContext = createContext({
+  data: [],
+});
 
 export const DataProvider = ({ children }) => {
   const [data] = useState(DATA);

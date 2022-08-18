@@ -30,7 +30,7 @@ import { Pegawai } from "../pages/master_data/pegawai.component";
 import { Tingkat } from "../pages/master_data/tingkat.component";
 import { Login } from "../pages/auth/Login.component";
 import { Register } from "../pages/auth/Register.component";
-import { Authenticated } from "../component/404/Unauthenticated";
+import { Unauthenticated } from "../component/404/Unauthenticated";
 import { PageNotFound } from "../component/404/Notfound";
 import { Expired } from "../component/404/Expired";
 import { CreateYayasan } from "../pages/yayasan/CreateYayasan.component";
@@ -45,14 +45,14 @@ export const Router = () => {
       <Route
         path="/dashboard"
         element={
-          <Authenticated>
+          <Unauthenticated>
             <Expired>
               <div className="flex overflow-x-hidden ">
                 <Sidebar menus={menusDashboard} />
                 <Header />
               </div>
             </Expired>
-          </Authenticated>
+          </Unauthenticated>
         }
       >
         <Route path="perencanaan">
@@ -91,22 +91,28 @@ export const Router = () => {
       </Route>
       <Route path="*" element={<PageNotFound />} />
       <Route path="form">
-        <Route path="yayasan" element={<CreateYayasan />} />
+        <Route
+          path="yayasan"
+          element={
+            <Unauthenticated>
+              <CreateYayasan />
+            </Unauthenticated>
+          }
+        />
       </Route>
       <Route
         path="/settings"
         element={
-          <Authenticated>
+          <Unauthenticated>
             <Expired>
-              <div className="flex overflow-x-hidden ">
-                <Sidebar menus={menuSetting} />
+              <div className="flex overflow-x-hidden h-screen ">
                 <Header />
               </div>
             </Expired>
-          </Authenticated>
+          </Unauthenticated>
         }
       >
-        <Route path="akun" element={<SettingAccount />} />
+        <Route index element={<SettingAccount />} />
       </Route>
     </Routes>
   );

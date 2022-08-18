@@ -29,11 +29,11 @@ export const useFetch = (url) => {
       setError(true);
       errorMessage(error);
     }
-
-    useEffect(() => {
-      fetchData();
-    }, [url]);
   };
+
+  useEffect(() => {
+    fetchData();
+  }, [url]);
 
   return { data, loading, error, fetchData };
 };
@@ -51,13 +51,14 @@ export const useFetchPost = (url) => {
 
   const fetchData = async (data, ...rest) => {
     try {
-      const response = await axios.post(url, data, ...rest);
+      const response = await axios.post(url, data, { ...rest });
       setLoading(false);
-      return response.data;
+      return response;
     } catch (error) {
       setError(true);
-      errorMessage(error);
-      errorMessageAuth(error);
+      const err1 = await errorMessage(error);
+      const err2 = await errorMessageAuth(error);
+      return err1 || err2;
     }
   };
 
@@ -109,11 +110,11 @@ export const useFetchDelete = (url) => {
  * @returns
  */
 
-export const useFetchUpdate = (url, data) => {
+export const useFetchUpdate = (url) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = async (data) => {
     try {
       await axios.put(url, data, {
         headers: {

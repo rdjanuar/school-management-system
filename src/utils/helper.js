@@ -1,5 +1,4 @@
 import * as yup from "yup";
-import { useMemo } from "react";
 
 export const setTheme = (theme) => {
   return localStorage.setItem("theme", theme);
@@ -56,6 +55,10 @@ export const checkCookie = (name) => {
   } else {
     return false;
   }
+};
+
+export const determineRoles = (user, roles) => {
+  return user.map((p) => p.nama).filter((p) => roles.includes(p)).length;
 };
 
 export const logout = (callback) => {

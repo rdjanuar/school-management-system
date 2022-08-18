@@ -34,7 +34,7 @@ import { Unauthenticated } from "../component/404/Unauthenticated";
 import { PageNotFound } from "../component/404/Notfound";
 import { Expired } from "../component/404/Expired";
 import { CreateYayasan } from "../pages/yayasan/CreateYayasan.component";
-import { SettingAccount } from "../component/user/Setting.component";
+import { SettingAccount } from "../pages/user/Setting.component";
 import { menusDashboard, menuSetting } from "../utils/helper";
 
 export const Router = () => {

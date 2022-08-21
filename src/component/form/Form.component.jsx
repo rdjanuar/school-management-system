@@ -1,74 +1,98 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import {
+  FormControl,
+  FormErrorMessage,
+  Input,
+  Button,
+  FormLabel,
+  Select,
+} from "@chakra-ui/react";
+
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { Button } from "../buttons/buttons.component";
-import {
-  validatorAuthSchema,
-  validatorYayasanSchema,
-} from "../../utils/helper";
+/**
+ * @param {Object} template - template form
+ * @param {Function} onSubmit - function handler submit
+ * @param {containerClass} containerClass - class style container
+ * @param {formClass} formClass - class style form
+ * @param {inputClass} inputClass - class style input
+ * @param {buttonClass} buttonClass - class style button
+ * @param {selectClass} selectClass - class style select
+ * @param {labelClass} labelClass - class style label
+ * @param {optionClass} optionClass - class style option
+ * @param {spanClass} spanClass - class style span
+ * @param {headerClass} headerClass - class style header
+ * @param {validatorSchema} SchemaYup - bring your own yup schema
+ */
 
-export const Form = ({ onSubmit, template, height }) => {
+export const Form = ({
+  onSubmit,
+  template,
+  formClass,
+  inputClass,
+  selectClass,
+  labelClass,
+  optionClass,
+  spanClass,
+  headerClass,
+  validatorSchema,
+}) => {
   const { tittle, fields } = template;
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
-    resolver:
-      template.tittle === "Login"
-        ? yupResolver(validatorAuthSchema())
-        : yupResolver(validatorYayasanSchema()),
+    resolver: yupResolver(validatorSchema),
   });
 
   const renderFields = (fields) => {
-    return fields.map((field) => {
-      const { title, type, name } = field;
-
+    return fields.map(({ title, type, name, options, value, readOnly }) => {
       return (
-        <div className="mb-6" key={name}>
-          <label
-            htmlFor={name}
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
+        <FormControl isInvalid={errors[name]} key={name}>
+          <FormLabel htmlFor={name} className={labelClass}>
             {title}
-          </label>
-          <input
+          </FormLabel>
+          <Input
             type={type}
             name={name}
             autoComplete={`current-${name}`}
-            className={
-              fields.disabled === true
-                ? "bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                : "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-            }
+            defaultValue={value}
+            readOnly={readOnly}
             {...register(name, { required: true })}
-            defaultValue={field.defaultvalue}
-            disabled={field.disabled}
-            readOnly={field.readonly}
           />
-          {errors[name] && (
+          {type === "hidden" && options && (
             <>
-              <span className="text-red-500 text-sm">
-                {errors[name]?.message}
-              </span>
+              <Select
+                name={name}
+                {...register(name)}
+                placeholder={"Pilih Tahun ajaran"}
+              >
+                {options.map(({ value, label }) => (
+                  <option key={value} value={value} className={optionClass}>
+                    {label}
+                  </option>
+                ))}
+              </Select>
             </>
           )}
-        </div>
+          <FormErrorMessage>
+            {errors[name] && errors[name]?.message}
+          </FormErrorMessage>
+        </FormControl>
       );
     });
   };
 
   return (
-    <div
-      className={`flex flex-col justify-center items-center  bg-gray-800 ${height}`}
-    >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <h2 className="font-semibold text-white text-center">{tittle}</h2>
-        {renderFields(fields)}
-        <Button name={"Submit"} />
-      </form>
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)} className={formClass}>
+      <h2 className={headerClass}>{tittle}</h2>
+      {renderFields(fields)}
+      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+        Submit
+      </Button>
+    </form>
   );
 };

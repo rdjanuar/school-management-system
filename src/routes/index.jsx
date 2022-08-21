@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "../component/header/header.component";
 import { Sidebar } from "../component/sidebar/sidebar.component";
 import { Kelas } from "../pages/perencanaan/kelas.component";
-import { Rombongan_Belajar } from "../pages/perencanaan/rombongan_belajar.component";
+import { RombonganBelajar } from "../pages/perencanaan/rombongan_belajar.component";
 import { TahunPelajaran } from "../pages/perencanaan/tahun_pelajaran.component";
 import { Ekstrakulikuler } from "../pages/perencanaan/guru/ekstrakulikuler.component";
 import { KKM } from "../pages/perencanaan/kkm.component";
@@ -35,7 +35,15 @@ import { PageNotFound } from "../component/404/Notfound";
 import { Expired } from "../component/404/Expired";
 import { CreateYayasan } from "../pages/yayasan/CreateYayasan.component";
 import { SettingAccount } from "../pages/user/Setting.component";
-import { menusDashboard, menuSetting } from "../utils/helper";
+import { menusDashboard } from "../utils/helper";
+import { CreateTahunAjaran } from "../pages/create_data/tahun_ajaran.component";
+import { CreateGuru } from "../pages/create_data/guru.component";
+import { CraeteTingkat } from "../pages/create_data/tingkat.component";
+import { CreateMataPelajaran } from "../pages/create_data/mata_pelajaran.component";
+import { Testing } from "../component/404/Test";
+import { CreateUser } from "../pages/create_data/user.component";
+import { Sekolah } from "../pages/master_data/sekolah.component";
+import { CreateSekolah } from "../pages/create_data/sekolah.component";
 
 export const Router = () => {
   return (
@@ -47,7 +55,7 @@ export const Router = () => {
         element={
           <Unauthenticated>
             <Expired>
-              <div className="flex overflow-x-hidden ">
+              <div className="flex overflow-x-hidden h-screen ">
                 <Sidebar menus={menusDashboard} />
                 <Header />
               </div>
@@ -57,7 +65,7 @@ export const Router = () => {
       >
         <Route path="perencanaan">
           <Route path="tahun-pelajaran" element={<TahunPelajaran />} />
-          <Route path="rombongan-belajar" element={<Rombongan_Belajar />} />
+          <Route path="rombongan-belajar" element={<RombonganBelajar />} />
           <Route path="kelas" element={<Kelas />} />
           <Route path="ekstrakulikuler" element={<Ekstrakulikuler />} />
           <Route path="KKM" element={<KKM />} />
@@ -87,19 +95,31 @@ export const Router = () => {
           <Route path="pegawai" element={<Pegawai />} />
           <Route path="tingkat" element={<Tingkat />} />
           <Route path="ekstrakulikuler" element={<DataEkstrakulikuler />} />
+          <Route path="sekolah" element={<Sekolah />} />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />
-      <Route path="form">
-        <Route
-          path="yayasan"
-          element={
-            <Unauthenticated>
-              <CreateYayasan />
-            </Unauthenticated>
-          }
-        />
+      <Route
+        path="form"
+        element={
+          <Unauthenticated>
+            <Expired>
+              <div className="flex overflow-x-hidden h-screen  ">
+                <Header />
+              </div>
+            </Expired>
+          </Unauthenticated>
+        }
+      >
+        <Route path="yayasan/:id" element={<CreateYayasan />} />
+        <Route path="tahun-ajaran" element={<CreateTahunAjaran />} />
+        <Route path="guru" element={<CreateGuru />} />
+        <Route path="tingkat" element={<CraeteTingkat />} />
+        <Route path="matapelajaran" element={<CreateMataPelajaran />} />
+        <Route path="user" element={<CreateUser />} />
+        <Route path="sekolah" element={<CreateSekolah />} />
       </Route>
+
       <Route
         path="/settings"
         element={
@@ -114,6 +134,7 @@ export const Router = () => {
       >
         <Route index element={<SettingAccount />} />
       </Route>
+      <Route path="/testing" element={<Testing />} />
     </Routes>
   );
 };

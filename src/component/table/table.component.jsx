@@ -5,6 +5,7 @@ import { useTable, usePagination } from "react-table";
 
 import { Delete } from "../modal/delete.component";
 import { Buttons } from "../buttons/buttons.action.component";
+import { userData } from "../../utils/helper";
 
 export const Table = ({
   headers,
@@ -13,6 +14,7 @@ export const Table = ({
   pageCount,
   onDelete,
   title,
+  url,
 }) => {
   const [show, setShow] = useState(false);
   const [id, setId] = useState(0);
@@ -35,10 +37,13 @@ export const Table = ({
 
   return (
     <>
-      <div className="mx-auto container">
-        <h1 className="mx-10 m-7 font-bold text-lg dark:text-white">{title}</h1>
-        <div className="overflow-x-auto mx-10 mt-10 relative shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-left text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400 ">
+      <div className="mx-auto container  ">
+        <h1 className="mx-10  m-7 font-bold text-lg dark:text-white">
+          {title}
+        </h1>
+
+        <div className="overflow-x-auto  mx-10 my-10 relative shadow-md sm:rounded-lg">
+          <table className="w-full  text-sm text-left  text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400 ">
             <thead className=" text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400">
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
@@ -55,7 +60,7 @@ export const Table = ({
               ))}
             </thead>
             <tbody>
-              {page.map((row, i) => {
+              {page.map((row) => {
                 prepareRow(row);
                 return (
                   <tr
@@ -73,7 +78,11 @@ export const Table = ({
                       );
                     })}
                     <td className="py-3 px-6 whitespace-nowrap space-x-2">
-                      <Link to={`/form/${row.original.id}`}>
+                      <Link
+                        to={`/${url}/${userData("sekolah_id")}/${
+                          row.original.id
+                        }`}
+                      >
                         <Buttons name={"Edit"} color={"blue"} />
                       </Link>
                       <Buttons

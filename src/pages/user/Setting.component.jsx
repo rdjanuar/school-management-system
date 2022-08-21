@@ -13,7 +13,7 @@ export const SettingAccount = () => {
   };
   return (
     <div className="mx-auto container ">
-      <div className="flex flex-col items-center border dark:border-white border-black  rounded-lg p-10 mx-10 md:flex-row  ">
+      <div className="flex flex-col   items-center border border-black dark:border-white   rounded-lg p-10 mx-10 md:flex-row  ">
         {/* Sementara Hard Code */}
         <div className="flex flex-col">
           <img src={userData("image") || avatar} alt="default-image" />
@@ -31,7 +31,7 @@ export const SettingAccount = () => {
             <h1 className="font-semibold dark:text-white ">ID sekolah</h1>
             <input
               type="text"
-              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-full p-2.5 cursor-not-allowed dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               defaultValue={userData("sekolah_id")}
               disabled
               readOnly

@@ -33,6 +33,7 @@ export const NilaiEkstrakulikuler = () => {
         title={"Absensi"}
         onPageChange={handlerPageChange}
         pageCount={pageCount}
+        url={"form/yayasan"}
       />
     </>
   );

@@ -52,5 +52,7 @@ export const CreateYayasan = () => {
     console.log(fetchPost);
   };
 
-  return <Form onSubmit={handlerData} template={template} />;
+  return (
+    <Form onSubmit={handlerData} template={template} height={"h-screen"} />
+  );
 };

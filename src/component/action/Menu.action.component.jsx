@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-export const MenuDropDown = ({ onClick }) => {
+export const MenuDropDown = ({ onClick, right, top }) => {
   const location = useLocation();
   const { pathname } = location;
   const path = pathname.split("/").filter((x) => x);
@@ -10,7 +10,7 @@ export const MenuDropDown = ({ onClick }) => {
   return (
     <div className="relative inline-block text-left">
       <div
-        className="origin-top-right absolute right-1 top-10 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-slate-800  ring-1 ring-black ring-opacity-5 focus:outline-none "
+        className={`origin-top-right absolute ${right} ${top} mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-slate-800  ring-1 ring-black ring-opacity-5 focus:outline-none `}
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"

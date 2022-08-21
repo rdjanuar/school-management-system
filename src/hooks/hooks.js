@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 import { errorMessage, errorMessageAuth } from "../error/error";
 import { toast } from "react-toastify";
 import { getToken } from "../utils/helper";
@@ -22,7 +23,7 @@ export const useFetch = (url) => {
           Authorization: `Bearer ${getToken()}`,
         },
       });
-      setData(response.data.result.books);
+      setData(response.data);
       setLoading(false);
       return response.data;
     } catch (error) {
@@ -51,14 +52,14 @@ export const useFetchPost = (url) => {
 
   const fetchData = async (data, ...rest) => {
     try {
-      const response = await axios.post(url, data, { ...rest });
+      const response = await axios.post(url, data, ...rest);
       setLoading(false);
       return response;
     } catch (error) {
       setError(true);
       const err1 = await errorMessage(error);
       const err2 = await errorMessageAuth(error);
-      return err1 || err2;
+      return Promise.race([err1, err2]);
     }
   };
 
@@ -67,8 +68,8 @@ export const useFetchPost = (url) => {
 
 /**
  *
- * @param {*} url pass url to fetch data
- * @param {id} id pass id data
+ * @param {url} url pass url to fetch data
+ * @required id data
  * @returns
  */
 
@@ -143,10 +144,11 @@ export const useFetchById = (url) => {
           Authorization: `Bearer ${getToken()}`,
         },
       });
-      setData(response.data);
+      setData(response.data.data);
       setLoading(false);
       return response.data;
     } catch (error) {
+      console.log(error.message);
       setError(true);
       errorMessage(error);
     }

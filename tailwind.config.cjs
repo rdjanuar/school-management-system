@@ -5,11 +5,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        SidebarColor: "#333333",
+        SidebarColor: "#1e1e2d",
         SettingSidebarColor: "#1e1e2d",
         bgColor: "rgba(242,247,255)",
+        darkSidebarColor: "#9899ac",
+      },
+      fontFamily: {
+        sidebarFont: ["Nunito"],
       },
     },
   },
-  plugins: ["@tailwindcss/typography"],
+  variants: {
+    scrollbar: ["dark"],
+  },
+  plugins: [require("tailwind-scrollbar")],
 };

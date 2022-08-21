@@ -7,19 +7,17 @@ import { Action } from "../../component/action/action.component";
 import { useFetchById } from "../../hooks/hooks";
 import { userData } from "../../utils/helper";
 import { Spinner } from "../../component/spinner/spinner.component";
-import { Sidebar } from "../../component/sidebar/sidebar.component";
-import { menusDashboard } from "../../utils/helper";
 
-export const Guru = () => {
+export const Sekolah = () => {
   const headers = ["id", "nik", "nama", "no Telp", "email", "alamat", "Action"];
   const [pageCount, setPageCount] = useState(1);
   const [currentData, setCurrentData] = useState([]);
   const [dataOffset, setDataOffset] = useState([]);
   const { data, loading, fetchData } = useFetchById(
-    `${import.meta.env.VITE_API_URL}/guru`
+    `${import.meta.env.VITE_API_URL}/sekolah`
   );
 
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   const handlerPageChange = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;
@@ -32,14 +30,14 @@ export const Guru = () => {
   };
 
   useEffect(() => {
-    getDatabyId(userData("sekolah_id"));
+    getDatabyId(userData("yayasan_id") || 0);
   }, []);
 
   const mapData = useMemo(
     () =>
-      data.map(({ id, nik, nama, no_telepon, email, alamat }) => ({
+      data.map(({ id, jenjang, nama, no_telepon, email, alamat }) => ({
         id,
-        nik,
+        jenjang,
         nama,
         no_telepon,
         email,
@@ -63,7 +61,7 @@ export const Guru = () => {
           <Breadcrubms />
           <Action
             handlerChange={(e) => setSearch(e.target.value)}
-            link={"/form/guru"}
+            link={"/form/sekolah"}
           />
 
           <Table

@@ -47,13 +47,15 @@ export const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
+    <div className="flex justify-center items-center h-screen bg-white ">
       <Form
         onSubmit={handlerData}
         template={template}
         validatorSchema={validatorAuthSchema()}
         headerClass={"text-2xl font-bold text-center mb-2"}
-        formClass={"bg-white flex flex-col p-10 shadow-xl rounded-lg"}
+        formClass={"bg-white flex flex-col p-20 shadow-xl rounded-lg"}
+        mt={4}
+        colorScheme={"teal"}
       />
       <ToastContainer transition={Slide} />
     </div>

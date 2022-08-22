@@ -37,6 +37,7 @@ export const Form = ({
   spanClass,
   headerClass,
   validatorSchema,
+  ...props
 }) => {
   const { tittle, fields } = template;
 
@@ -90,7 +91,7 @@ export const Form = ({
     <form onSubmit={handleSubmit(onSubmit)} className={formClass}>
       <h2 className={headerClass}>{tittle}</h2>
       {renderFields(fields)}
-      <Button mt={4} colorScheme="teal" isLoading={isSubmitting} type="submit">
+      <Button isLoading={isSubmitting} type="submit" {...props}>
         Submit
       </Button>
     </form>

@@ -15,7 +15,7 @@ export const Login = () => {
   const navigate = useNavigate();
 
   const template = {
-    tittle: "Logins",
+    tittle: "Login",
     fields: [
       {
         title: "Username",

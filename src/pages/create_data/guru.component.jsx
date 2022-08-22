@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 
+import { Breadcrubms } from "../../component/breadcrumbs/breadcrubms.component";
 import { Form } from "../../component/form/Form.component";
 import { useFetchPost } from "../../hooks/hooks";
 import { getToken, userData } from "../../utils/helper";
@@ -21,7 +23,7 @@ export const CreateGuru = () => {
         disabled: true,
       },
       {
-        title: "nik",
+        title: "Nik",
         type: "text",
         name: "nik",
         readOnly: false,
@@ -35,21 +37,21 @@ export const CreateGuru = () => {
         disabled: false,
       },
       {
-        title: "no_telepon",
+        title: "No Telp",
         type: "text",
         name: "no_telepon",
         readOnly: false,
         disabled: false,
       },
       {
-        title: "email",
+        title: "Email",
         type: "text",
         name: "email",
         readOnly: false,
         disabled: false,
       },
       {
-        title: "alamat",
+        title: "Alamat",
         type: "text",
         name: "alamat",
         readOnly: false,
@@ -69,10 +71,23 @@ export const CreateGuru = () => {
   };
 
   return (
-    <Form
-      onSubmit={handlerData}
-      template={template}
-      validatorSchema={validatorGuru()}
-    />
+    <>
+      <div className="flex justify-between">
+        <Breadcrubms />
+        <IoArrowBack
+          className="mx-10 w-6 h-6 cursor-pointer dark:text-white"
+          onClick={() => window.history.back()}
+        />
+      </div>
+      <div className="mx-10">
+        <Form
+          headerClass={"text-center text-xl font-bold"}
+          onSubmit={handlerData}
+          template={template}
+          validatorSchema={validatorGuru()}
+          formClass={"space-y-2"}
+        />
+      </div>
+    </>
   );
 };

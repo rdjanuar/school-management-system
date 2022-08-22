@@ -7,6 +7,7 @@ import { useFetchPost } from "../../hooks/hooks";
 import { Form } from "../../component/form/Form.component";
 import { setToken, setUser, setCookie } from "../../utils/helper";
 import { validatorAuthSchema } from "../../utils/helper";
+import { Breadcrubms } from "../../component/breadcrumbs/breadcrubms.component";
 
 export const Login = () => {
   const { fetchData } = useFetchPost(
@@ -54,8 +55,6 @@ export const Login = () => {
         validatorSchema={validatorAuthSchema()}
         headerClass={"text-2xl font-bold text-center mb-2"}
         formClass={"bg-white flex flex-col p-20 shadow-xl rounded-lg"}
-        mt={4}
-        colorScheme={"teal"}
       />
       <ToastContainer transition={Slide} />
     </div>

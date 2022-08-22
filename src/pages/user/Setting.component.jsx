@@ -13,7 +13,7 @@ export const SettingAccount = () => {
   };
   return (
     <div className="mx-auto container ">
-      <div className="flex flex-col   items-center border border-black dark:border-white   rounded-lg p-10 mx-10 md:flex-row  ">
+      <div className="flex flex-col  items-center border border-black dark:border-white   rounded-lg p-10 mx-10 md:flex-row  ">
         {/* Sementara Hard Code */}
         <div className="flex flex-col">
           <img src={userData("image") || avatar} alt="default-image" />
@@ -27,16 +27,8 @@ export const SettingAccount = () => {
           </form>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col items-center mx-10 flex-wrap space-y-4 md:flex-row ">
-            <h1 className="font-semibold dark:text-white ">ID sekolah</h1>
-            <input
-              type="text"
-              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block sm:w-full p-2.5 cursor-not-allowed dark:bg-gray-600 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              defaultValue={userData("sekolah_id")}
-              disabled
-              readOnly
-            ></input>
-            <h1 className="font-semibold dark:text-white mb-5 ">Username</h1>
+          <div className="flex  items-center mx-10 flex-wrap space-y-4 md:flex-row ">
+            <h1 className="font-semibold dark:text-white mb-1 ">Username</h1>
             <input
               defaultValue={userData("username")}
               type="text"
@@ -44,7 +36,7 @@ export const SettingAccount = () => {
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               {...register("username", { required: true })}
             />
-            <h1 className="font-semibold dark:text-white mb-5 ">No Telp.</h1>
+            <h1 className="font-semibold dark:text-white  ">No Telp.</h1>
             <input
               defaultValue={userData("no_telepon")}
               type="text"

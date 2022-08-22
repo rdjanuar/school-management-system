@@ -1,4 +1,5 @@
 import * as yup from "yup";
+import { FaBeer } from "react-icons/fa";
 
 export const setTheme = (theme) => {
   return localStorage.setItem("theme", theme);
@@ -322,8 +323,8 @@ export const menusDashboard = [
         link: "data/role",
       },
       {
-        name: "User",
-        link: "data/user",
+        name: "Muatan Lokal",
+        link: "data/muatan-lokal",
       },
       {
         name: "Guru",
@@ -334,8 +335,8 @@ export const menusDashboard = [
         link: "data/siswa",
       },
       {
-        name: "Pegawai",
-        link: "data/pegawai",
+        name: "Mata Pelajaran",
+        link: "data/mata-pelajaran",
       },
       {
         name: "Tingkat",
@@ -348,6 +349,10 @@ export const menusDashboard = [
       {
         name: "Sekolah",
         link: "data/sekolah",
+      },
+      {
+        name: "Yayasan",
+        link: "data/yayasan",
       },
     ],
   },

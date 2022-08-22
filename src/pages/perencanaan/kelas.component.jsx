@@ -17,7 +17,7 @@ export const Kelas = () => {
     `${import.meta.env.VITE_API_URL}/matapelajaran`
   );
 
-  const itemsPerPage = 5;
+  const itemsPerPage = 10;
 
   const handlerPageChange = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;

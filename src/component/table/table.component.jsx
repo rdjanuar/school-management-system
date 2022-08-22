@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
 import { useTable, usePagination } from "react-table";
+import { GrPlan } from "react-icons/gr";
 
 import { Delete } from "../modal/delete.component";
 import { Buttons } from "../buttons/buttons.action.component";
@@ -43,7 +44,7 @@ export const Table = ({
         </h1>
 
         <div className="overflow-x-auto  mx-10 my-10 relative shadow-md sm:rounded-lg">
-          <table className="w-full  text-sm text-left  text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-400 ">
+          <table className="w-full  text-sm text-left  text-gray-500 bg-white dark:bg-transparent dark:text-gray-400 ">
             <thead className=" text-xs text-gray-700 uppercase bg-white dark:bg-gray-700 dark:text-gray-400">
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
@@ -111,7 +112,7 @@ export const Table = ({
             </tbody>
           </table>
           <ReactPaginate
-            className="flex justify-center items-center dark:bg-gray-800 bg-white "
+            className="flex  justify-center items-center dark:bg-gray-800 bg-white "
             nextLabel="Next"
             onPageChange={onPageChange}
             pageRangeDisplayed={3}

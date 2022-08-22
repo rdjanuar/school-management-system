@@ -57,7 +57,7 @@ export const Router = () => {
             <Expired>
               <div className="flex overflow-x-hidden h-screen ">
                 <Sidebar menus={menusDashboard} />
-                <Header />
+                <Header position={"translate-x-24"} />
               </div>
             </Expired>
           </Unauthenticated>
@@ -100,24 +100,27 @@ export const Router = () => {
       </Route>
       <Route path="*" element={<PageNotFound />} />
       <Route
-        path="form"
+        path="dashboard"
         element={
           <Unauthenticated>
             <Expired>
-              <div className="flex overflow-x-hidden h-screen  ">
-                <Header />
+              <div className="flex overflow-x-hidden h-screen ">
+                <Sidebar menus={menusDashboard} />
+                <Header position={"translate-x-24"} />
               </div>
             </Expired>
           </Unauthenticated>
         }
       >
-        <Route path="yayasan/:id" element={<CreateYayasan />} />
-        <Route path="tahun-ajaran" element={<CreateTahunAjaran />} />
-        <Route path="guru" element={<CreateGuru />} />
-        <Route path="tingkat" element={<CraeteTingkat />} />
-        <Route path="matapelajaran" element={<CreateMataPelajaran />} />
-        <Route path="user" element={<CreateUser />} />
-        <Route path="sekolah" element={<CreateSekolah />} />
+        <Route path="form">
+          <Route path="yayasan/:id" element={<CreateYayasan />} />
+          <Route path="tahun-ajaran" element={<CreateTahunAjaran />} />
+          <Route path="guru" element={<CreateGuru />} />
+          <Route path="tingkat" element={<CraeteTingkat />} />
+          <Route path="matapelajaran" element={<CreateMataPelajaran />} />
+          <Route path="user" element={<CreateUser />} />
+          <Route path="sekolah" element={<CreateSekolah />} />
+        </Route>
       </Route>
 
       <Route

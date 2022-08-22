@@ -63,7 +63,7 @@ export const Guru = () => {
           <Breadcrubms />
           <Action
             handlerChange={(e) => setSearch(e.target.value)}
-            link={"/form/guru"}
+            link={"/dashboard/form/guru"}
           />
 
           <Table

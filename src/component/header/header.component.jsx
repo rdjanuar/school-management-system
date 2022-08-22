@@ -7,7 +7,7 @@ import { logout } from "../../utils/helper";
 import { MenuDropDown } from "../action/Menu.action.component";
 import { MenuContext } from "../../context/menu.context";
 
-export const Header = () => {
+export const Header = ({ position }) => {
   const { toggleTheme } = useContext(ThemeContext);
   const { handleMenu } = useContext(MenuContext);
   const [dropdown, setDropdown] = useState(false);
@@ -31,7 +31,7 @@ export const Header = () => {
   };
 
   return (
-    <div className="mx-auto container sm:z-10 sm:translate-x-[6.8rem]   w-[85%]">
+    <div className={`mx-auto container ${position}  sm:z-10  w-[85%]`}>
       <div className="flex justify-between mx-[2.2rem] my-10 dark:text-white items-center">
         <div>
           {path === "dashboard" ? (

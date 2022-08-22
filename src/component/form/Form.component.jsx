@@ -37,7 +37,6 @@ export const Form = ({
   spanClass,
   headerClass,
   validatorSchema,
-  ...props
 }) => {
   const { tittle, fields } = template;
 
@@ -53,7 +52,7 @@ export const Form = ({
     return fields.map(({ title, type, name, options, value, readOnly }) => {
       return (
         <FormControl isInvalid={errors[name]} key={name}>
-          <FormLabel htmlFor={name} className={labelClass}>
+          <FormLabel htmlFor={name} className={labelClass} fontSize="sm">
             {title}
           </FormLabel>
           <Input
@@ -62,6 +61,7 @@ export const Form = ({
             autoComplete={`current-${name}`}
             defaultValue={value}
             readOnly={readOnly}
+            border="1px solid #e2e8f0"
             {...register(name, { required: true })}
           />
           {type === "hidden" && options && (
@@ -91,7 +91,12 @@ export const Form = ({
     <form onSubmit={handleSubmit(onSubmit)} className={formClass}>
       <h2 className={headerClass}>{tittle}</h2>
       {renderFields(fields)}
-      <Button isLoading={isSubmitting} type="submit" {...props}>
+      <Button
+        isLoading={isSubmitting}
+        colorScheme={"teal"}
+        mt={4}
+        type="submit"
+      >
         Submit
       </Button>
     </form>

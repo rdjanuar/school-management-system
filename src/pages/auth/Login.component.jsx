@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,7 +7,6 @@ import { useFetchPost } from "../../hooks/hooks";
 import { Form } from "../../component/form/Form.component";
 import { setToken, setUser, setCookie } from "../../utils/helper";
 import { validatorAuthSchema } from "../../utils/helper";
-import { SubmitContext } from "../../context/submit.context";
 
 export const Login = () => {
   const { fetchData } = useFetchPost(
@@ -15,10 +14,8 @@ export const Login = () => {
   );
   const navigate = useNavigate();
 
-  const { handleSubmited } = useContext(SubmitContext);
-
   const template = {
-    tittle: "Login",
+    tittle: "Logins",
     fields: [
       {
         title: "Username",
@@ -50,17 +47,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="bg-cyan-500 h-screen">
+    <div className="flex justify-center items-center h-screen bg-white">
       <Form
         onSubmit={handlerData}
         template={template}
         validatorSchema={validatorAuthSchema()}
-        labelClass={
-          "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        }
-        inputClass={
-          "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        }
+        headerClass={"text-2xl font-bold text-center mb-2"}
+        formClass={"bg-white flex flex-col p-10 shadow-xl rounded-lg"}
       />
       <ToastContainer transition={Slide} />
     </div>

@@ -7,19 +7,16 @@ import App from "./App";
 import "./index.css";
 import { ThemeProvider } from "./context/theme.context";
 import { MenuProvider } from "./context/menu.context";
-import { SubmitProvider } from "./context/submit.context";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ChakraProvider>
       <BrowserRouter>
-        <SubmitProvider>
-          <ThemeProvider>
-            <MenuProvider>
-              <App />
-            </MenuProvider>
-          </ThemeProvider>
-        </SubmitProvider>
+        <ThemeProvider>
+          <MenuProvider>
+            <App />
+          </MenuProvider>
+        </ThemeProvider>
       </BrowserRouter>
     </ChakraProvider>
   </StrictMode>

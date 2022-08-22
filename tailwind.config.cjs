@@ -11,7 +11,7 @@ module.exports = {
         darkSidebarColor: "#9899ac",
       },
       fontFamily: {
-        sidebarFont: ["Nunito"],
+        sidebarFont: ["Poppins", "sans-serif"],
       },
     },
   },

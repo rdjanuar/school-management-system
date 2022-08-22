@@ -51,20 +51,6 @@ export const errorMessage = (error) => {
       });
       break;
 
-    case "User Anda belum aktif atau Anda salah memasukkan password.":
-      toast.error(
-        "User Anda belum aktif atau Anda salah memasukkan password.",
-        {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          className: "dark:bg-black dark:text-white",
-        }
-      );
     default:
       break;
   }
